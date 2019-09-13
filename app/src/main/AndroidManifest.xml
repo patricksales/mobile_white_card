@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.testwhitecard">
+    package="com.patricksales.testwhitecard">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.bookrepositories.view.MainActivity">
+        <activity android:name="com.patricksales.testwhitecard.features.bookrepositories.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.detailsbook.view.DetailBookActivity"/>
+        <activity android:name="com.patricksales.testwhitecard.features.detailsbook.view.DetailBookActivity"/>
     </application>
 
 </manifest>
