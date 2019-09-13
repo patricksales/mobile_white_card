@@ -1,0 +1,36 @@
+package com.example.testwhitecard.core.data
+
+import android.annotation.SuppressLint
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.testwhitecard.InjectionRepository
+import com.example.testwhitecard.features.bookrepositories.viewmodel.MainViewModel
+
+class ViewModelFactory constructor(
+    private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>) =
+        with(modelClass) {
+            when {
+                isAssignableFrom(MainViewModel::class.java) ->
+                    MainViewModel(repository)
+                else ->
+                    throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
+            }
+        } as T
+
+
+    companion object {
+
+        @SuppressLint("StaticFieldLeak")
+        @Volatile
+        private var INSTANCE: ViewModelFactory? = null
+
+        fun getInstance() =
+            INSTANCE ?: synchronized(ViewModelFactory::class.java) {
+                INSTANCE
+                    ?: ViewModelFactory(InjectionRepository.provideRepository())
+                        .also { INSTANCE = it }
+            }
+    }
+}
