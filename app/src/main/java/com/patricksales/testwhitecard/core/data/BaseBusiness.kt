@@ -11,8 +11,7 @@ import retrofit2.Response
 import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
 
-open class BaseBusiness(
-    private val repository: Repository? = null) {
+open class BaseBusiness {
 
     private var parentJob = Job()
 

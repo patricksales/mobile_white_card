@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class MainBusiness (
 
-    private val repository: Repository) : BaseBusiness(repository) {
+    private val repository: Repository) : BaseBusiness() {
 
     val booksLiveData = MutableLiveData<ResponseApi>()
 

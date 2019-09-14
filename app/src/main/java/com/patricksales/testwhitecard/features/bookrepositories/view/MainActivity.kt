@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.patricksales.testwhitecard.R
 import com.patricksales.testwhitecard.core.data.BaseActivity
 import com.patricksales.testwhitecard.core.data.BaseViewModel
-import com.patricksales.testwhitecard.core.data.api.ResponseApi
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import com.patricksales.testwhitecard.features.bookrepositories.model.Item
 import com.patricksales.testwhitecard.features.bookrepositories.adapter.HomeAdapter
@@ -19,17 +18,12 @@ class MainActivity : BaseActivity() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var homeAdapter: HomeAdapter
-
-    private val bookList: MutableList<Item> = mutableListOf()
-    private val mainListBook: MutableList<Item> = mutableListOf()
-
     private lateinit var recyclerViewBooks: RecyclerView
-
     private lateinit var layoutManager: LinearLayoutManager
 
-    var isScrolling: Boolean = false
+    private val bookList: MutableList<Item>? = mutableListOf()
 
-
+    var isLoading: Boolean = false
     var getPageBooks: Int = 1
 
     override fun getViewModel(): BaseViewModel = startViewModel(MainViewModel::class.java)
@@ -43,37 +37,26 @@ class MainActivity : BaseActivity() {
 
         setupRecyclerView()
 
+        setListener()
+
         initObservables()
 
-        initView()
+        getBooks()
     }
 
-    private fun setupRecyclerView() {
-        recyclerViewBooks = findViewById(R.id.rvBookList)
-
-        layoutManager = LinearLayoutManager(this@MainActivity)
-        recyclerViewBooks.layoutManager = layoutManager
-
-        homeAdapter = HomeAdapter(this@MainActivity, bookList)
-        recyclerViewBooks.adapter = homeAdapter
+   private fun setListener() {
+        btMainRetry.setOnClickListener {
+            doRetry()
+        }
 
         recyclerViewBooks.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-/*            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                    isScrolling = true
-                }
-            }*/
-
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy > 0) {
                     val visibleItemCount = layoutManager.childCount
                     val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
                     var totalItems = homeAdapter.itemCount
 
-                    if (!isScrolling) {
+                    if (!isLoading) {
                         if ((visibleItemCount + pastVisibleItem) >= totalItems) {
                             getPageBooks++
                             viewModel.getBooks(getPageBooks)
@@ -87,29 +70,32 @@ class MainActivity : BaseActivity() {
 
     private fun initObservables() {
         viewModel.booksLiveData.observe(this, Observer { response ->
-            validateReturn(response)
+            processSuccessfulReturn(response)
+        })
+
+        viewModel.showError.observe(this, Observer {message ->
+            showError(message)
         })
     }
 
-    private fun validateReturn(response: ResponseApi?) {
-        when (response?.status) {
-            ResponseApi.StatusResponse.ERROR -> {
-                processErrorReturn(response)
-            }
-            ResponseApi.StatusResponse.SUCCESS -> {
-                processSuccessfulReturn(response)
-            }
-        }
+    private fun setupRecyclerView() {
+        recyclerViewBooks = findViewById(R.id.rvBookList)
+
+        layoutManager = LinearLayoutManager(this@MainActivity)
+        recyclerViewBooks.layoutManager = layoutManager
+
+        homeAdapter = HomeAdapter(this@MainActivity, bookList)
+        recyclerViewBooks.adapter = homeAdapter
     }
 
     private fun setVisibility(progress: Int, recycler: Int, error: Int) {
-        pbMainLoading.visibility = progress
-        //vgMainContainer.visibility = recycler
-        vgMainErrorLayout.visibility = error
+        vgErrorAPI.visibility = error
+        pbLoading.visibility = progress
+        vgMainContainer.visibility = recycler
     }
 
-    private fun processErrorReturn(response: ResponseApi) {
-        tvMainErrorMessage.text = response.message
+    private fun showError(message: String) {
+        tvMainErrorMessage.text = message
 
         setVisibility(
             progress = View.GONE,
@@ -118,31 +104,39 @@ class MainActivity : BaseActivity() {
         )
     }
 
-    private fun processSuccessfulReturn(response: ResponseApi) {
+    private fun processSuccessfulReturn(response: Any?) {
         setVisibility(
             progress = View.GONE,
             recycler = View.VISIBLE,
             error = View.GONE
         )
-        pbMainLoading.visibility = View.GONE
+        pbLoading.visibility = View.GONE
 
-        val bookResponse = response.data as? BookResponse
-        val booksList = bookResponse?.items
+        val booksList = (response as? BookResponse)?.items
 
-        mainListBook.clear()
         booksList?.let {
-            mainListBook.addAll(it)
             dataSetWasChanged(it)
         }
     }
 
     private fun dataSetWasChanged(list: List<Item>) {
-        bookList.clear()
-        bookList.addAll(list)
-        homeAdapter.notifyDataSetChanged()
+        bookList?.let {
+            it.addAll(list)
+            homeAdapter.notifyDataSetChanged()
+        }
     }
 
-    fun initView() {
+    private fun getBooks() {
+        isLoading = true
         viewModel.getBooks(getPageBooks)
+        setVisibility(
+            progress = View.VISIBLE,
+            recycler = View.GONE,
+            error = View.GONE
+        )
+    }
+
+    private fun doRetry() {
+        getBooks()
     }
 }

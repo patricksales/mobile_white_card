@@ -8,22 +8,33 @@ import com.patricksales.testwhitecard.features.bookrepositories.business.MainBus
 
 class MainViewModel(repository: Repository) : BaseViewModel(repository) {
 
-    val business: MainBusiness = MainBusiness(repository)
+    private val business: MainBusiness = MainBusiness(repository)
 
-    val booksLiveData = MutableLiveData<ResponseApi>()
+    val booksLiveData = MutableLiveData<Any>()
+    val showError: MutableLiveData<String> = MutableLiveData()
 
     init {
         initObservables()
     }
 
-    fun initObservables() {
-        business?.booksLiveData?.observeForever { responseAPI ->
-            booksLiveData.postValue(responseAPI)
+    private fun initObservables() {
+        business.booksLiveData.observeForever { responseAPI ->
+            validateReturn(responseAPI)
+        }
+    }
+
+    private fun validateReturn(response: ResponseApi?) {
+        when (response?.status) {
+            ResponseApi.StatusResponse.ERROR -> {
+                showError.postValue(response.message)
+            }
+            ResponseApi.StatusResponse.SUCCESS -> {
+                booksLiveData.postValue(response.data)
+            }
         }
     }
 
     fun getBooks(page: Int) {
         business.start(page)
     }
-
 }

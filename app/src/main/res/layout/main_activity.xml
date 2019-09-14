@@ -46,7 +46,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="parent"
-                    tools:itemCount="4"
+                    tools:itemCount="10"
                     tools:listitem="@layout/book_item" />
 
             </LinearLayout>
@@ -54,7 +54,7 @@
         </ScrollView>
 
         <ProgressBar
-            android:id="@+id/pbMainLoading"
+            android:id="@+id/pbLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,7 +63,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
-            android:id="@+id/vgMainErrorLayout"
+            android:id="@+id/vgErrorAPI"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone">
@@ -86,8 +86,7 @@
                 android:layout_marginEnd="@dimen/defaultMargin"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                tools:text="Erro ao processar solicitacao" />
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btMainRetry"
@@ -97,7 +96,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/minimumMargin"
                 android:padding="@dimen/defaultMargin"
-                android:text="Tente Novamente" />
+                android:text="@string/try_again" />
 
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

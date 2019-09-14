@@ -13,7 +13,7 @@ import com.patricksales.testwhitecard.features.bookrepositories.model.Item
 import com.patricksales.testwhitecard.features.detailsbook.view.DetailBookActivity
 import kotlinx.android.synthetic.main.book_item.view.*
 
-class HomeAdapter(private var context: Context, private var list: List<Item>) :
+class HomeAdapter(private var context: Context, private var list: List<Item>?) :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,23 +22,22 @@ class HomeAdapter(private var context: Context, private var list: List<Item>) :
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list?.let { it.size } ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(context, list[position])
+        holder.bind(context, (list?.let { it[position] }))
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(context: Context, book: Item) = with(itemView) {
-            itemView.tvRepositoyName.text = book.name
-            itemView.tvRepositoryDescription.text = book.description
-            //itemView.rvContactsItemUsername.text = user.username
+        fun bind(context: Context, book: Item?) = with(itemView) {
+            itemView.tvRepositoyName.text = book?.name
+            itemView.tvRepositoryDescription.text = book?.description
 
             Glide
                 .with(context)
-                .load(book.owner.avatarUrl)
+                .load(book?.owner?.avatarUrl)
                 .into(itemView.ivAuthorImage)
 
             itemView.contentLayout.setOnClickListener {
@@ -48,7 +47,7 @@ class HomeAdapter(private var context: Context, private var list: List<Item>) :
 
         private fun startPaymentActivityForResult(
             context: Context,
-            item: Item
+            item: Item?
         ) {
             val intent = Intent(context, DetailBookActivity::class.java)
             intent.putExtra(Model.KEY_BOOK_INTENT, item)
