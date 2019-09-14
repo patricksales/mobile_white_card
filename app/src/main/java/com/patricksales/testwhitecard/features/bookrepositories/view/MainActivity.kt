@@ -115,7 +115,7 @@ class MainActivity : BaseActivity() {
         val booksList = (response as? BookResponse)?.items
 
         booksList?.let {
-            dataSetWasChanged(it)
+            dataSetWasChanged(it as List<Item>)
         }
     }
 

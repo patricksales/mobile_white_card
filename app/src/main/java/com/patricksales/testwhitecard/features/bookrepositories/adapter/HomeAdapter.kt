@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.patricksales.testwhitecard.R
 import com.patricksales.testwhitecard.core.util.Model
+import com.patricksales.testwhitecard.features.BasicActivity
 import com.patricksales.testwhitecard.features.bookrepositories.model.Item
+import com.patricksales.testwhitecard.features.bookrepositories.view.MainActivity
 import com.patricksales.testwhitecard.features.detailsbook.view.DetailBookActivity
 import kotlinx.android.synthetic.main.book_item.view.*
 
@@ -22,7 +24,7 @@ class HomeAdapter(private var context: Context, private var list: List<Item>?) :
     }
 
     override fun getItemCount(): Int {
-        return list?.let { it.size } ?: 0
+        return list?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -41,11 +43,11 @@ class HomeAdapter(private var context: Context, private var list: List<Item>?) :
                 .into(itemView.ivAuthorImage)
 
             itemView.contentLayout.setOnClickListener {
-                startPaymentActivityForResult(context, book)
+                startDetailBookActiviy(context, book)
             }
         }
 
-        private fun startPaymentActivityForResult(
+        private fun startDetailBookActiviy(
             context: Context,
             item: Item?
         ) {

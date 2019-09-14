@@ -7,7 +7,6 @@ import com.patricksales.testwhitecard.core.data.api.ResponseApi
 import kotlinx.coroutines.launch
 
 class MainBusiness (
-
     private val repository: Repository) : BaseBusiness() {
 
     val booksLiveData = MutableLiveData<ResponseApi>()

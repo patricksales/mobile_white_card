@@ -1,7 +1,7 @@
 package com.patricksales.testwhitecard.core.util
 
 object API {
-    const val URL_BASE =  "https://api.github.com/search/"
+    const val URL_BASE =  "https://api.github.com"
 }
 
 object APIError {
@@ -12,4 +12,5 @@ object APIError {
 
 object Model {
     const val KEY_BOOK_INTENT = "book"
+    const val KEY_REPOSITORY_INTENT = "repository"
 }

@@ -8,11 +8,11 @@ import kotlinx.android.parcel.Parcelize
 data class BookResponse(
 
     @SerializedName("incomplete_results")
-    val incompleteResults: Boolean,
+    val incompleteResults: Boolean?,
     @SerializedName("items")
-    val items: List<Item>,
+    val items: List<Item?>,
     @SerializedName("total_count")
-    val totalCount: Int
+    val totalCount: Int?
 ) : Parcelable
 
 @Parcelize
@@ -26,7 +26,7 @@ data class Item(
     @SerializedName("blobs_url")
     val blobsUrl: String?,
     @SerializedName("branches_url")
-    val branchesUrl: String??,
+    val branchesUrl: String?,
     @SerializedName("cloneUrl")
     val cloneUrl: String?,
     @SerializedName("collaborators_url")
@@ -50,17 +50,17 @@ data class Item(
     @SerializedName("description")
     val description: String?,
     @SerializedName("disabled")
-    val disabled: Boolean,
+    val disabled: Boolean?,
     @SerializedName("downloads_url")
     val downloadsUrl: String?,
     @SerializedName("events_url")
-    val eventsUrl: String??,
+    val eventsUrl: String?,
     @SerializedName("fork")
-    val fork: Boolean,
+    val fork: Boolean?,
     @SerializedName("forks")
-    val forks: Int,
+    val forks: Int?,
     @SerializedName("forks_count")
-    val forksCount: Int,
+    val forksCount: Int?,
     @SerializedName("forks_url")
     val forksUrl: String?,
     @SerializedName("full_name")
@@ -74,15 +74,15 @@ data class Item(
     @SerializedName("git_url")
     val gitUrl: String?,
     @SerializedName("has_downloads")
-    val hasDownloads: Boolean,
+    val hasDownloads: Boolean?,
     @SerializedName("has_issues")
-    val hasIssues: Boolean,
+    val hasIssues: Boolean?,
     @SerializedName("has_pages")
-    val hasPages: Boolean,
+    val hasPages: Boolean?,
     @SerializedName("has_projects")
-    val hasProjects: Boolean,
+    val hasProjects: Boolean?,
     @SerializedName("has_wiki")
-    val hasWiki: Boolean,
+    val hasWiki: Boolean?,
     @SerializedName("homepage")
     val homepage: String?,
     @SerializedName("hooks_url")
@@ -90,7 +90,7 @@ data class Item(
     @SerializedName("html_url")
     val htmlUrl: String?,
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("issue_comment_url")
     val issueCommentUrl: String?,
     @SerializedName("issue_events_url")
@@ -106,13 +106,13 @@ data class Item(
     @SerializedName("languages_url")
     val languagesUrl: String?,
     @SerializedName("license")
-    val license: License,
+    val license: License?,
     @SerializedName("merges_url")
     val mergesUrl: String?,
     @SerializedName("milestones_url")
     val milestonesUrl: String?,
     @SerializedName("mirror_url")
-    val mirrorUrl: String??,
+    val mirrorUrl: String?,
     @SerializedName("name")
     val name: String?,
     @SerializedName("node_id")
@@ -120,13 +120,13 @@ data class Item(
     @SerializedName("notifications_url")
     val notificationsUrl: String?,
     @SerializedName("open_issues")
-    val openIssues: Int,
+    val openIssues: Int?,
     @SerializedName("open_issues_count")
-    val openIssuesCount: Int,
+    val openIssuesCount: Int?,
     @SerializedName("owner")
-    val owner: Owner,
+    val owner: Owner?,
     @SerializedName("private")
-    val `private`: Boolean,
+    val `private`: Boolean?,
     @SerializedName("pulls_url")
     val pullsUrl: String?,
     @SerializedName("pushed_at")
@@ -136,11 +136,11 @@ data class Item(
     @SerializedName("score")
     val score: Double,
     @SerializedName("size")
-    val size: Int,
+    val size: Int?,
     @SerializedName("ssh_url")
     val sshUrl: String?,
     @SerializedName("stargazers_count")
-    val stargazersCount: Int,
+    val stargazersCount: Int?,
     @SerializedName("stargazers_url")
     val stargazersUrl: String?,
     @SerializedName("statuses_url")
@@ -162,9 +162,9 @@ data class Item(
     @SerializedName("url")
     val url: String?,
     @SerializedName("watchers")
-    val watchers: Int,
+    val watchers: Int?,
     @SerializedName("watchers_count")
-    val watchersCount: Int
+    val watchersCount: Int?
 ) : Parcelable
 
 @Parcelize
@@ -198,7 +198,7 @@ data class Owner(
     @SerializedName("html_url")
     val htmlUrl: String?,
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("login")
     val login: String?,
     @SerializedName("node_id")
@@ -210,7 +210,7 @@ data class Owner(
     @SerializedName("repos_url")
     val reposUrl: String?,
     @SerializedName("site_admin")
-    val siteAdmin: Boolean,
+    val siteAdmin: Boolean?,
     @SerializedName("starred_url")
     val starredUrl: String?,
     @SerializedName("subscriptions_url")
