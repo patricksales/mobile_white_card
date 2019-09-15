@@ -1,6 +1,7 @@
 package com.patricksales.testwhitecard.features.detailsbook.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +42,12 @@ class DetailBookActivity : BaseActivity() {
 
     private fun setupRecyclerView() {
         recyclerViewPR = findViewById(R.id.rvPR)
-        recyclerViewPR.addItemDecoration(DividerItemDecoration(this@DetailBookActivity, DividerItemDecoration.VERTICAL))
+        recyclerViewPR.addItemDecoration(
+            DividerItemDecoration(
+                this@DetailBookActivity,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         layoutManager = LinearLayoutManager(this@DetailBookActivity)
         recyclerViewPR.layoutManager = layoutManager
@@ -60,9 +66,18 @@ class DetailBookActivity : BaseActivity() {
         viewModel.repositoryLiveData.observe(this, Observer { response ->
             processListRepositoryResponse(response)
         })
+        viewModel.showError.observe(this, Observer { response ->
+            showError(response)
+        })
     }
 
     private fun processListRepositoryResponse(repositories: List<PullRepository>) {
+        setVisibility(
+            progress = View.GONE,
+            recycler = View.VISIBLE,
+            error = View.GONE
+        )
+
         prList?.let {
             it.addAll(repositories)
             prAdapter.notifyDataSetChanged()
@@ -71,6 +86,12 @@ class DetailBookActivity : BaseActivity() {
 
     private fun findBook() {
         book = intent.getParcelableExtra(KEY_BOOK_INTENT)
+
+        setVisibility(
+            progress = View.VISIBLE,
+            recycler = View.GONE,
+            error = View.GONE
+        )
 
         book?.let { library ->
             library.name?.let { name ->
@@ -81,4 +102,21 @@ class DetailBookActivity : BaseActivity() {
             }
         }
     }
+
+    private fun setVisibility(progress: Int, recycler: Int, error: Int) {
+        vgErrorAPI.visibility = error
+        pbLoading.visibility = progress
+        vgMainContainer.visibility = recycler
+    }
+
+    private fun showError(message: String) {
+        tvErrorMessage.text = message
+
+        setVisibility(
+            progress = View.GONE,
+            recycler = View.GONE,
+            error = View.VISIBLE
+        )
+    }
+
 }

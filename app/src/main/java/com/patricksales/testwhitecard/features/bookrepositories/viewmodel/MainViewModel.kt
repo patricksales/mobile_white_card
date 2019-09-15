@@ -23,7 +23,7 @@ class MainViewModel(repository: Repository) : BaseViewModel(repository) {
         }
     }
 
-    private fun validateReturn(response: ResponseApi?) {
+    fun validateReturn(response: ResponseApi?) {
         when (response?.status) {
             ResponseApi.StatusResponse.ERROR -> {
                 showError.postValue(response.message)

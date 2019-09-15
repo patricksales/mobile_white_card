@@ -12,7 +12,7 @@ data class PullRepository(
     val state: String?,
     val locked: Boolean?,
     val title: String?,
-    val user: UserXX,
+    val user: User?,
     val body: String?,
     val created_at: String?,
     val updated_at: String?,

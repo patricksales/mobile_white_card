@@ -6,7 +6,7 @@ data class Links(
     val html: Html,
     val issue: Issue,
     val review_comment: ReviewComment,
-    val review_comments: ReviewComments,
+    val review_comments: ReviewComment,
     val self: Self,
     val statuses: Statuses
 )

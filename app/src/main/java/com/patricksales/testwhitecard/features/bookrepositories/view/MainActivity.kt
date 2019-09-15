@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.patricksales.testwhitecard.R
 import com.patricksales.testwhitecard.core.data.BaseActivity
 import com.patricksales.testwhitecard.core.data.BaseViewModel
+import com.patricksales.testwhitecard.features.bookrepositories.adapter.HomeAdapter
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import com.patricksales.testwhitecard.features.bookrepositories.model.Item
-import com.patricksales.testwhitecard.features.bookrepositories.adapter.HomeAdapter
 import com.patricksales.testwhitecard.features.bookrepositories.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
 
@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
         getBooks()
     }
 
-   private fun setListener() {
+    private fun setListener() {
         btMainRetry.setOnClickListener {
             doRetry()
         }
@@ -73,7 +73,7 @@ class MainActivity : BaseActivity() {
             processSuccessfulReturn(response)
         })
 
-        viewModel.showError.observe(this, Observer {message ->
+        viewModel.showError.observe(this, Observer { message ->
             showError(message)
         })
     }

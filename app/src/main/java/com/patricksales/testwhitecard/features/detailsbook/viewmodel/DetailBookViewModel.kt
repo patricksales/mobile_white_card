@@ -10,7 +10,8 @@ import com.patricksales.testwhitecard.features.detailsbook.model.PullRepository
 class DetailBookViewModel(repository: Repository) : BaseViewModel(repository) {
 
     private val business: DetailBookBusiness = DetailBookBusiness(repository)
-    private val showError: MutableLiveData<String> = MutableLiveData()
+
+    val showError: MutableLiveData<String> = MutableLiveData()
     val repositoryLiveData = MutableLiveData<List<PullRepository>>()
 
     init {
@@ -23,13 +24,20 @@ class DetailBookViewModel(repository: Repository) : BaseViewModel(repository) {
         }
     }
 
-    private fun validateReturn(response: ResponseApi?) {
+    fun validateReturn(response: ResponseApi?) {
         when (response?.status) {
             ResponseApi.StatusResponse.ERROR -> {
                 showError.postValue(response.message)
             }
             ResponseApi.StatusResponse.SUCCESS -> {
-                repositoryLiveData.postValue(response.data as List<PullRepository>?)
+                val responseData = response.data as? List<PullRepository>?
+                responseData?.let {
+                    if (it.isEmpty()) {
+                        showError.postValue("Não foi possível encontrar nenhum item.")
+                    } else {
+                        repositoryLiveData.postValue(it)
+                    }
+                }
             }
         }
     }
