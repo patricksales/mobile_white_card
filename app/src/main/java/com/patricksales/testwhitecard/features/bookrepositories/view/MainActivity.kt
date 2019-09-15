@@ -42,6 +42,11 @@ class MainActivity : BaseActivity() {
         initObservables()
 
         getBooks()
+
+        //todo testes instrumentados
+        //todo injeção de dependencia
+        //todo testes da business
+        //todo tratamento de error da API/loading na Base
     }
 
     private fun setListener() {
