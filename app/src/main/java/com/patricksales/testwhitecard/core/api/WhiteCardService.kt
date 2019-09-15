@@ -1,4 +1,4 @@
-package com.patricksales.testwhitecard.core.data.api
+package com.patricksales.testwhitecard.core.api
 
 import com.patricksales.testwhitecard.core.util.API.URL_BASE
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

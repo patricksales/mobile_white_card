@@ -1,9 +1,9 @@
 package com.patricksales.testwhitecard.features.detailsbook.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.patricksales.testwhitecard.core.data.RemoteDataSource
-import com.patricksales.testwhitecard.core.data.Repository
-import com.patricksales.testwhitecard.core.data.api.ResponseApi
+import com.patricksales.testwhitecard.core.data.repository.RemoteDataSource
+import com.patricksales.testwhitecard.core.data.repository.Repository
+import com.patricksales.testwhitecard.core.api.ResponseApi
 import com.patricksales.testwhitecard.features.detailsbook.model.PullRepository
 import org.junit.Assert
 import org.junit.Before
@@ -21,7 +21,8 @@ class DetailBookViewModelTest {
 
     @Before
     fun setUp() {
-        val repository = Repository(RemoteDataSource)
+        val repository =
+            Repository(RemoteDataSource)
         viewModel = Mockito.spy(DetailBookViewModel(repository))
     }
 

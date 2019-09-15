@@ -1,4 +1,4 @@
-package com.patricksales.testwhitecard.core.data.api
+package com.patricksales.testwhitecard.core.api
 
 data class ResponseApi(val status: StatusResponse, val message: String?, val data: Any?) {
 

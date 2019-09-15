@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.patricksales.testwhitecard.R
-import com.patricksales.testwhitecard.core.data.BaseActivity
-import com.patricksales.testwhitecard.core.data.BaseViewModel
+import com.patricksales.testwhitecard.features.BaseActivity
+import com.patricksales.testwhitecard.features.BaseViewModel
 import com.patricksales.testwhitecard.core.util.Model.KEY_BOOK_INTENT
 import com.patricksales.testwhitecard.features.bookrepositories.model.Item
 import com.patricksales.testwhitecard.features.detailsbook.adapter.DetailBooksAdapter

@@ -1,4 +1,4 @@
-package com.patricksales.testwhitecard.core.data.api
+package com.patricksales.testwhitecard.core.api
 
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import com.patricksales.testwhitecard.features.detailsbook.model.PullRepository

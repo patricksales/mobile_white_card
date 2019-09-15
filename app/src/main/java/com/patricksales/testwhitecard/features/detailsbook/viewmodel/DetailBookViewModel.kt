@@ -1,9 +1,9 @@
 package com.patricksales.testwhitecard.features.detailsbook.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.patricksales.testwhitecard.core.data.BaseViewModel
-import com.patricksales.testwhitecard.core.data.Repository
-import com.patricksales.testwhitecard.core.data.api.ResponseApi
+import com.patricksales.testwhitecard.features.BaseViewModel
+import com.patricksales.testwhitecard.core.data.repository.Repository
+import com.patricksales.testwhitecard.core.api.ResponseApi
 import com.patricksales.testwhitecard.features.detailsbook.business.DetailBookBusiness
 import com.patricksales.testwhitecard.features.detailsbook.model.PullRepository
 

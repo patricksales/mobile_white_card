@@ -1,6 +1,6 @@
-package com.patricksales.testwhitecard.core.data
+package com.patricksales.testwhitecard.core.data.repository
 
-import com.patricksales.testwhitecard.core.data.api.WhiteCardService
+import com.patricksales.testwhitecard.core.api.WhiteCardService
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import com.patricksales.testwhitecard.features.detailsbook.model.PullRepository
 import kotlinx.coroutines.Deferred
@@ -12,7 +12,8 @@ object RemoteDataSource : DataSource {
         owner: String,
         repository: String
     ): Deferred<Response<List<PullRepository>>> {
-        return api().getForkRepository(owner, repository)
+        return api()
+            .getForkRepository(owner, repository)
     }
 
     private fun api() = WhiteCardService.whiteCard

@@ -1,9 +1,9 @@
 package com.patricksales.testwhitecard.features.bookrepositories.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.patricksales.testwhitecard.core.data.RemoteDataSource
-import com.patricksales.testwhitecard.core.data.Repository
-import com.patricksales.testwhitecard.core.data.api.ResponseApi
+import com.patricksales.testwhitecard.core.data.repository.RemoteDataSource
+import com.patricksales.testwhitecard.core.data.repository.Repository
+import com.patricksales.testwhitecard.core.api.ResponseApi
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import org.junit.Assert
 import org.junit.Before
@@ -21,7 +21,8 @@ class MainViewModelTest {
 
     @Before
     fun setUp() {
-        val repository = Repository(RemoteDataSource)
+        val repository =
+            Repository(RemoteDataSource)
         viewModel = spy(MainViewModel(repository))
     }
 

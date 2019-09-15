@@ -1,6 +1,6 @@
 package com.patricksales.testwhitecard.core.util
 
-import com.patricksales.testwhitecard.core.data.api.WhiteCardService
+import com.patricksales.testwhitecard.core.api.WhiteCardService
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Response

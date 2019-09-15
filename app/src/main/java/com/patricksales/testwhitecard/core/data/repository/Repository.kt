@@ -1,11 +1,12 @@
-package com.patricksales.testwhitecard.core.data
+package com.patricksales.testwhitecard.core.data.repository
 
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import com.patricksales.testwhitecard.features.detailsbook.model.PullRepository
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 
-open class Repository(private val dataSource: DataSource) : DataSource {
+open class Repository(private val dataSource: DataSource) :
+    DataSource {
 
     override suspend fun getForkRepositories(
         owner: String,
@@ -27,7 +28,9 @@ open class Repository(private val dataSource: DataSource) : DataSource {
             INSTANCE
                 ?: synchronized(Repository::class.java) {
                     INSTANCE
-                        ?: Repository(remoteDataSource)
+                        ?: Repository(
+                            remoteDataSource
+                        )
                             .also { INSTANCE = it }
                 }
 

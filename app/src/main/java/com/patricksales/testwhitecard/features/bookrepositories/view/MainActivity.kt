@@ -6,8 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.patricksales.testwhitecard.R
-import com.patricksales.testwhitecard.core.data.BaseActivity
-import com.patricksales.testwhitecard.core.data.BaseViewModel
+import com.patricksales.testwhitecard.features.BaseActivity
+import com.patricksales.testwhitecard.features.BaseViewModel
 import com.patricksales.testwhitecard.features.bookrepositories.adapter.HomeAdapter
 import com.patricksales.testwhitecard.features.bookrepositories.model.BookResponse
 import com.patricksales.testwhitecard.features.bookrepositories.model.Item

@@ -1,6 +1,6 @@
-package com.patricksales.testwhitecard.core.data
+package com.patricksales.testwhitecard.features
 
-import com.patricksales.testwhitecard.core.data.api.ResponseApi
+import com.patricksales.testwhitecard.core.api.ResponseApi
 import com.patricksales.testwhitecard.core.util.APIError.ERROR_DEFAULT
 import com.patricksales.testwhitecard.core.util.ErrorUtils
 import kotlinx.coroutines.CoroutineScope

@@ -1,7 +1,7 @@
 package com.patricksales.testwhitecard
 
-import com.patricksales.testwhitecard.core.data.RemoteDataSource
-import com.patricksales.testwhitecard.core.data.Repository
+import com.patricksales.testwhitecard.core.data.repository.RemoteDataSource
+import com.patricksales.testwhitecard.core.data.repository.Repository
 
 object InjectionRepository {
 

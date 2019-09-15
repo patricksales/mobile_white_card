@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.patricksales.testwhitecard.InjectionRepository
+import com.patricksales.testwhitecard.core.data.repository.Repository
 import com.patricksales.testwhitecard.features.bookrepositories.viewmodel.MainViewModel
 import com.patricksales.testwhitecard.features.detailsbook.viewmodel.DetailBookViewModel
 
