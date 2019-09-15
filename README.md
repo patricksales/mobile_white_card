@@ -1,7 +1,9 @@
 Design Patterns
   * MVVM
+  
 Language
   * Kotlin
+  
 Libs
   * LiveData
   * ViewModel
