@@ -1,15 +1,15 @@
 Design Patterns
-  MVVM
+  * MVVM
 Language
-  Kotlin
+  * Kotlin
 Libs
-  LiveData
-  ViewModel
-  Okhttp
-  Gson
-  Retrofit  
-  Glide
-  Junit
-  Mockito
-  Coroutines
+  * LiveData
+  * ViewModel
+  * Okhttp
+  * Gson
+  * Retrofit  
+  * Glide
+  * Junit
+  * Mockito
+  * Coroutines
   
